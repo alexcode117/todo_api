@@ -5,7 +5,7 @@ import { initModels } from './models/init.models.js';
 import { routeApi } from './routes/index.js';
 
 // Inicializar la base de datos y los modelos
-await initModels();
+initModels();
 const app = express();
 
 // Middleware
