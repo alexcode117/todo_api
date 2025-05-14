@@ -19,7 +19,6 @@ describe('GET /api/v1/todos', () => {
         const response = await request(app).get('/api/v1/todos');
         expect(response.status).toBe(200);
         expect(response.body).toBeDefined();
-        expect(response.body).toBeDefined();
         expect(response.body).toHaveLength(1);
     });
 });
