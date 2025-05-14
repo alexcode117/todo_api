@@ -4,10 +4,10 @@ import { todoRoutes } from './todo.routes.js';
 const routeApi = (app, router) => {
 
   // Main route
-  app.use('/api/v1', router);
+  app.use('/api/v1/todos', router);
 
   // Use routes
-  router.use('/todos', todoRoutes(router));
+  router.use('/', todoRoutes(router));
   
   // Handle undefined routes
   app.use((req, res) => {
