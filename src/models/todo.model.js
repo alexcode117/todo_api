@@ -13,7 +13,7 @@ const TodoModel = db.define('Todo', {
   },
   description: {
     type: DataTypes.TEXT,
-    allowNull: true
+    allowNull: false
   },
   completed: {
     type: DataTypes.BOOLEAN,
@@ -21,7 +21,7 @@ const TodoModel = db.define('Todo', {
   },
   dueDate: {
     type: DataTypes.DATE,
-    allowNull: true
+    allowNull: false
   }
 }, {
   // Opciones del modelo
