@@ -10,11 +10,22 @@
     },
     "moduleNameMapper": {
       "^(\\.{1,2}/.*)\\.js$": "$1"
-    }
+    },
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/tests/**",
+      "!src/docs/**",
+      "!**/node_modules/**"
+    ]
   },
   "scripts": {
     "dev": "nodemon index.js",
     "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:unit": "jest src/tests/todo.service.test.js src/tests/todo.controller.test.js src/tests/validation.test.js",
+    "test:integration": "jest src/tests/integration.test.js",
+    "test:api": "jest src/tests/app.test.js",
     "docs": "jsdoc -c jsdoc.json"
   },
   "keywords": [],
