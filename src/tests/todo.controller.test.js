@@ -1,8 +1,14 @@
 import { TodoController } from '../controllers/todo.controller.js';
 import { TodoService } from '../services/todo.service.js';
+import { sequelize } from '../config/db.js';
 
 // Mock del servicio
 jest.mock('../services/todo.service.js');
+jest.mock('../config/db.js', () => ({
+  sequelize: {
+    close: jest.fn().mockResolvedValue(true)
+  }
+}));
 
 describe('TodoController', () => {
   let todoController;
@@ -54,6 +60,13 @@ describe('TodoController', () => {
     
     // Crear instancia del controlador con el servicio mockeado
     todoController = new TodoController(mockTodoService);
+  });
+  
+  // Cerrar conexiones después de todas las pruebas
+  afterAll(async () => {
+    await new Promise(resolve => setTimeout(resolve, 500)); // Dar tiempo para que se completen las operaciones pendientes
+    jest.clearAllMocks();
+    await sequelize.close();
   });
   
   describe('getAllTodos', () => {
