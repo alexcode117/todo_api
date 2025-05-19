@@ -9,7 +9,45 @@ Una API RESTful para gestionar tareas (todos) construida con Node.js, Express y 
 - Arquitectura en capas (Controladores, Servicios, Modelos)
 - Pruebas unitarias con Jest y Supertest
 - Documentación de API con Swagger/OpenAPI
-- Comentarios JSDoc en todo el código
+- Documentación de código con JSDoc
+- Comentarios explicativos en todo el código
+
+## Arquitectura
+
+El proyecto sigue una arquitectura en capas que separa claramente las responsabilidades:
+
+```
+┌─────────────────┐
+│     Cliente     │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│      Rutas      │ ← Manejo de endpoints HTTP
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  Controladores  │ ← Lógica de presentación
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│    Servicios    │ ← Lógica de negocio
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│     Modelos     │ ← Acceso a datos
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│   Base de datos │
+└─────────────────┘
+```
+
+Para más detalles sobre la arquitectura, consulta la [documentación completa](#documentación).
 
 ## Requisitos Previos
 
@@ -52,11 +90,6 @@ Una API RESTful para gestionar tareas (todos) construida con Node.js, Express y 
    npm run dev
    ```
 
-6. Accede a la documentación de la API:
-   ```
-   http://localhost:9000/api/v1/docs
-   ```
-
 ## Estructura del Proyecto
 
 ```
@@ -74,14 +107,19 @@ api-rest-todo-list/
 │   ├── services/       # Lógica de negocio
 │   ├── tests/          # Pruebas unitarias
 │   └── app.js          # Configuración de Express
+├── docs/               # Documentación generada por JSDoc
+├── tutorials/          # Tutoriales para la documentación
 ├── .env                # Variables de entorno (no incluido en git)
 ├── .gitignore          # Archivos ignorados por git
 ├── index.js            # Punto de entrada de la aplicación
+├── jsdoc.json          # Configuración de JSDoc
 ├── package.json        # Dependencias y scripts
 └── README.md           # Documentación del proyecto
 ```
 
-## Documentación de la API
+## Documentación
+
+### Documentación de la API (Swagger)
 
 La API está documentada con Swagger/OpenAPI. Puedes acceder a la documentación interactiva en:
 
@@ -94,6 +132,22 @@ Esta interfaz te permite:
 - Probar las operaciones directamente desde el navegador
 - Ver los esquemas de datos y respuestas
 - Entender los parámetros requeridos para cada operación
+
+### Documentación del Código (JSDoc)
+
+El código está documentado con JSDoc. Para generar la documentación:
+
+```bash
+npm run docs
+```
+
+Esto creará una carpeta `docs/` con la documentación HTML. Abre `docs/index.html` en tu navegador para explorarla.
+
+La documentación incluye:
+- Descripción detallada de clases, métodos y funciones
+- Tutoriales explicativos sobre la arquitectura y uso del proyecto
+- Diagramas de la estructura del proyecto
+- Ejemplos de uso
 
 ## Endpoints de la API
 
@@ -138,6 +192,27 @@ Cuerpo de la solicitud (todos los campos son opcionales):
 ### Eliminar una tarea
 ```
 DELETE /api/v1/todos/:id
+```
+
+## Ejemplos de Uso
+
+### Crear una nueva tarea
+
+```bash
+curl -X POST http://localhost:9000/api/v1/todos \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Completar proyecto",
+    "description": "Terminar el proyecto de API REST",
+    "completed": false,
+    "dueDate": "2025-06-01T00:00:00.000Z"
+  }'
+```
+
+### Obtener todas las tareas
+
+```bash
+curl -X GET http://localhost:9000/api/v1/todos
 ```
 
 ## Pruebas

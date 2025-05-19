@@ -1,17 +1,64 @@
 {
   "source": {
-    "include": ["src"],
-    "includePattern": ".js$",
-    "excludePattern": "(node_modules/|docs)"
+    "include": ["src", "index.js"],
+    "includePattern": ".+\\.js$",
+    "excludePattern": "(node_modules/|docs/)"
   },
-  "plugins": ["plugins/markdown"],
-  "templates": {
-    "cleverLinks": true,
-    "monospaceLinks": true
-  },
+  "plugins": [
+    "plugins/markdown",
+    "plugins/summarize"
+  ],
   "opts": {
     "recurse": true,
     "destination": "./docs/",
-    "template": "templates/default"
+    "template": "node_modules/docdash",
+    "readme": "README.md",
+    "tutorials": "./tutorials"
+  },
+  "templates": {
+    "cleverLinks": true,
+    "monospaceLinks": true,
+    "default": {
+      "outputSourceFiles": true,
+      "includeDate": false
+    }
+  },
+  "docdash": {
+    "static": true,
+    "sort": true,
+    "sectionOrder": [
+      "Classes",
+      "Modules",
+      "Externals",
+      "Events",
+      "Namespaces",
+      "Mixins",
+      "Tutorials",
+      "Interfaces"
+    ],
+    "meta": {
+      "title": "API REST TODO LIST - Documentación",
+      "description": "Documentación de la API REST TODO LIST",
+      "keyword": "api, rest, todo, list, nodejs, express, sequelize"
+    },
+    "search": true,
+    "collapse": true,
+    "typedefs": true,
+    "removeQuotes": "none",
+    "scripts": [],
+    "menu": {
+      "GitHub": {
+        "href": "https://github.com/tu-usuario/api-rest-todo-list",
+        "target": "_blank",
+        "class": "menu-item",
+        "id": "repository"
+      },
+      "API Docs": {
+        "href": "/api/v1/docs",
+        "target": "_blank",
+        "class": "menu-item",
+        "id": "swagger"
+      }
+    }
   }
 }
