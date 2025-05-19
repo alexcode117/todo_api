@@ -13,9 +13,9 @@ const swaggerOptions = {
       version: '1.0.0',
       description: 'Una API RESTful para gestionar tareas (todos) construida con Node.js, Express y MariaDB/Sequelize',
       contact: {
-        name: 'Desarrollador',
-        url: 'https://github.com/tu-usuario/api-rest-todo-list',
-        email: 'tu-email@ejemplo.com'
+        name: 'Alex',
+        url: 'https://github.com/alexcode117/todo_api',
+        email: 'alexcode7vzla@gmail.com'
       },
       license: {
         name: 'ISC',
