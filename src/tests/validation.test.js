@@ -1,4 +1,12 @@
 import { todoSchema } from '../validation/todo.validation.js';
+import { sequelize } from '../config/db.js';
+
+// Mock de la conexión a la base de datos
+jest.mock('../config/db.js', () => ({
+  sequelize: {
+    close: jest.fn().mockResolvedValue(true)
+  }
+}));
 
 describe('Todo Validation Schema', () => {
   // Datos de ejemplo válidos para las pruebas
@@ -8,6 +16,13 @@ describe('Todo Validation Schema', () => {
     completed: false,
     dueDate: new Date().toISOString()
   };
+
+  // Cerrar conexiones después de todas las pruebas
+  afterAll(async () => {
+    await new Promise(resolve => setTimeout(resolve, 500)); // Dar tiempo para que se completen las operaciones pendientes
+    jest.clearAllMocks();
+    await sequelize.close();
+  });
 
   describe('title validation', () => {
     it('debe aceptar un título válido', () => {

@@ -1,5 +1,13 @@
 import request from 'supertest';
 import { testApp } from './setup.js';
+import { sequelize } from '../config/db.js';
+
+// Mock de la conexión a la base de datos
+jest.mock('../config/db.js', () => ({
+  sequelize: {
+    close: jest.fn().mockResolvedValue(true)
+  }
+}));
 
 // Crear una instancia de la aplicación para pruebas
 const app = testApp();
@@ -75,6 +83,13 @@ jest.mock('../services/todo.service.js', () => ({
     })
   }))
 }));
+
+// Cerrar conexiones después de todas las pruebas
+afterAll(async () => {
+  await new Promise(resolve => setTimeout(resolve, 500)); // Dar tiempo para que se completen las operaciones pendientes
+  jest.clearAllMocks();
+  await sequelize.close();
+});
 
 // Test de la ruta GET /todos
 describe('GET /api/v1/todos', () => {
