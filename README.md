@@ -8,7 +8,8 @@ Una API RESTful para gestionar tareas (todos) construida con Node.js, Express y 
 - Validación de datos con Joi
 - Arquitectura en capas (Controladores, Servicios, Modelos)
 - Pruebas unitarias con Jest y Supertest
-- Documentación de API con ejemplos de uso
+- Documentación de API con Swagger/OpenAPI
+- Comentarios JSDoc en todo el código
 
 ## Requisitos Previos
 
@@ -51,12 +52,20 @@ Una API RESTful para gestionar tareas (todos) construida con Node.js, Express y 
    npm run dev
    ```
 
+6. Accede a la documentación de la API:
+   ```
+   http://localhost:9000/api/v1/docs
+   ```
+
 ## Estructura del Proyecto
 
 ```
 api-rest-todo-list/
 ├── src/
 │   ├── config/         # Configuración de la aplicación
+│   │   ├── config.js   # Variables de entorno
+│   │   ├── db.js       # Configuración de la base de datos
+│   │   └── swagger.js  # Configuración de Swagger
 │   ├── controllers/    # Controladores de la API
 │   ├── middleware/     # Middleware personalizado
 │   ├── models/         # Modelos de datos
@@ -71,6 +80,20 @@ api-rest-todo-list/
 ├── package.json        # Dependencias y scripts
 └── README.md           # Documentación del proyecto
 ```
+
+## Documentación de la API
+
+La API está documentada con Swagger/OpenAPI. Puedes acceder a la documentación interactiva en:
+
+```
+http://localhost:9000/api/v1/docs
+```
+
+Esta interfaz te permite:
+- Ver todos los endpoints disponibles
+- Probar las operaciones directamente desde el navegador
+- Ver los esquemas de datos y respuestas
+- Entender los parámetros requeridos para cada operación
 
 ## Endpoints de la API
 
@@ -131,7 +154,6 @@ npm test
 - Sistema de etiquetas para las tareas
 - Búsqueda de texto completo
 - Implementación de caché para mejorar el rendimiento
-- Documentación con Swagger/OpenAPI
 
 ## Licencia
 
