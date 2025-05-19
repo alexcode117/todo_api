@@ -1,9 +1,15 @@
 import request from 'supertest';
 import app from '../app.js';
 import { TodoModel } from '../models/todo.model.js';
+import { sequelize } from '../config/db.js';
 
 // Mock de Sequelize
 jest.mock('../models/todo.model.js');
+jest.mock('../config/db.js', () => ({
+  sequelize: {
+    close: jest.fn().mockResolvedValue(true)
+  }
+}));
 
 describe('API Integration Tests', () => {
   // Datos de ejemplo para las pruebas
@@ -52,6 +58,13 @@ describe('API Integration Tests', () => {
       updatedAt: new Date().toISOString()
     });
     TodoModel.destroy = jest.fn().mockResolvedValue(1); // 1 registro eliminado
+  });
+  
+  // Cerrar conexiones después de todas las pruebas
+  afterAll(async () => {
+    await new Promise(resolve => setTimeout(resolve, 500)); // Dar tiempo para que se completen las operaciones pendientes
+    jest.clearAllMocks();
+    await sequelize.close();
   });
   
   describe('GET /api/v1/todos', () => {
