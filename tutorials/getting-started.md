@@ -13,8 +13,8 @@ Asegúrate de tener instalado:
 
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/tu-usuario/api-rest-todo-list.git
-   cd api-rest-todo-list
+   git clone https://github.com/alexcode117/todo_api
+   cd todo_api
    ```
 
 2. Instala las dependencias:
@@ -25,11 +25,11 @@ Asegúrate de tener instalado:
 3. Configura las variables de entorno:
    - Crea un archivo `.env` en la raíz del proyecto basado en el siguiente ejemplo:
    ```
-   PORT=9000
+   PORT=3000
    NODE_ENV=development
    DB_HOST=localhost
-   DB_USER=tu_usuario
-   DB_PASS=tu_contraseña
+   DB_USER=root
+   DB_PASS=
    DB_NAME=todo_db
    DB_PORT=3306
    ```
@@ -48,15 +48,15 @@ Asegúrate de tener instalado:
 
 Una vez que el servidor esté en funcionamiento, puedes verificar que todo está funcionando correctamente accediendo a:
 
-- Documentación de la API: `http://localhost:9000/api/v1/docs`
-- Endpoint principal: `http://localhost:9000/api/v1/todos`
+- Documentación de la API: `http://localhost:3000/api/v1/docs`
+- Endpoint principal: `http://localhost:3000/api/v1/todos`
 
 ## Ejemplos de uso
 
 ### Crear una nueva tarea
 
 ```bash
-curl -X POST http://localhost:9000/api/v1/todos \
+curl -X POST http://localhost:3000/api/v1/todos \
   -H "Content-Type: application/json" \
   -d '{
     "title": "Completar proyecto",
@@ -69,19 +69,19 @@ curl -X POST http://localhost:9000/api/v1/todos \
 ### Obtener todas las tareas
 
 ```bash
-curl -X GET http://localhost:9000/api/v1/todos
+curl -X GET http://localhost:3000/api/v1/todos
 ```
 
 ### Obtener una tarea específica
 
 ```bash
-curl -X GET http://localhost:9000/api/v1/todos/1
+curl -X GET http://localhost:3000/api/v1/todos/1
 ```
 
 ### Actualizar una tarea
 
 ```bash
-curl -X PATCH http://localhost:9000/api/v1/todos/1 \
+curl -X PATCH http://localhost:3000/api/v1/todos/1 \
   -H "Content-Type: application/json" \
   -d '{
     "completed": true
@@ -91,7 +91,7 @@ curl -X PATCH http://localhost:9000/api/v1/todos/1 \
 ### Eliminar una tarea
 
 ```bash
-curl -X DELETE http://localhost:9000/api/v1/todos/1
+curl -X DELETE http://localhost:3000/api/v1/todos/1
 ```
 
 ## Siguientes pasos

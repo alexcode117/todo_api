@@ -71,7 +71,7 @@ Para más detalles sobre la arquitectura, consulta la [documentación completa](
 3. Configura las variables de entorno:
    - Crea un archivo `.env` en la raíz del proyecto basado en el siguiente ejemplo:
    ```
-   PORT=9000
+   PORT=3000
    NODE_ENV=development
    DB_HOST=localhost
    DB_USER=tu_usuario
@@ -124,7 +124,7 @@ api-rest-todo-list/
 La API está documentada con Swagger/OpenAPI. Puedes acceder a la documentación interactiva en:
 
 ```
-http://localhost:9000/api/v1/docs
+http://localhost:3000/api/v1/docs
 ```
 
 Esta interfaz te permite:
@@ -199,7 +199,7 @@ DELETE /api/v1/todos/:id
 ### Crear una nueva tarea
 
 ```bash
-curl -X POST http://localhost:9000/api/v1/todos \
+curl -X POST http://localhost:3000/api/v1/todos \
   -H "Content-Type: application/json" \
   -d '{
     "title": "Completar proyecto",
@@ -212,7 +212,7 @@ curl -X POST http://localhost:9000/api/v1/todos \
 ### Obtener todas las tareas
 
 ```bash
-curl -X GET http://localhost:9000/api/v1/todos
+curl -X GET http://localhost:3000/api/v1/todos
 ```
 
 ## Pruebas
