@@ -40,6 +40,19 @@ class TodoController {
     }
   }
 
+  async updateTodo(req, res) {
+    try {
+      const { id } = req.params;
+      const updatedTodo = await this.todoService.updateTodo(id, req.body);
+      res.status(200).json(updatedTodo);
+    } catch (error) {
+      if(error.message === 'Todo no encontrado'){
+        return res.status(404).json({ message: error.message });
+      }
+      res.status(500).json({ message: 'Error updating todo', error: error.message });
+    }
+  }
+
   async deleteTodo(req, res) {
     try {
       const { id } = req.params;

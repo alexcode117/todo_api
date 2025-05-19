@@ -42,6 +42,21 @@ class TodoService {
     }
   }
 
+  async updateTodo(id, todoData) {
+    try {
+      // Actualizar un todo por su ID
+      const todo = await TodoModel.findByPk(id);
+      if (!todo) {
+        throw new Error('Todo no encontrado');
+      }
+      await todo.update(todoData);
+      return todo;
+    } catch (error) {
+      console.error(`Error al actualizar todo con ID ${id}:`, error);
+      throw error;
+    }
+  }
+
   async deleteTodo(id) {
     try {
       // Eliminar un todo por su ID

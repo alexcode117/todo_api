@@ -12,6 +12,7 @@ const todoRoutes = (router) => {
   router.get('/', controller.getAllTodos.bind(controller));
   router.post('/', validatorHandler(schema.createTodoSchema(), 'body'), controller.createTodo.bind(controller));
   router.get('/:id', validatorHandler(schema.getTodoSchema(), 'params'), controller.getTodoById.bind(controller));
+  router.patch('/:id', validatorHandler(schema.updateTodoSchema(), 'params'), validatorHandler(schema.updateTodoBodySchema(), 'body'), controller.updateTodo.bind(controller));
   router.delete('/:id', validatorHandler(schema.deleteTodoSchema(), 'params'), controller.deleteTodo.bind(controller));
   
   return router;

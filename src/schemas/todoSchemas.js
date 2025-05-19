@@ -17,6 +17,21 @@ class TodoSchema {
         });
     }
 
+    updateTodoSchema() {
+        return Joi.object({
+            id: Joi.number().required(),
+        });
+    }
+
+    updateTodoBodySchema() {
+        return Joi.object({
+            title: Joi.string().optional(),
+            description: Joi.string().optional(),
+            completed: Joi.boolean().optional(),
+            dueDate: Joi.date().optional(),
+        });
+    }
+
     deleteTodoSchema() {
         return Joi.object({
             id: Joi.number().required(),
